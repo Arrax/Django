@@ -6,7 +6,7 @@ from .views import (
 )
 from .views import create_answer
 
-app_name = 'questions'    # 指定了路由名称
+app_name = 'questions'
 
 urlpatterns = [
     path('questions/', include(([

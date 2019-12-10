@@ -20,6 +20,7 @@ class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ['title', 'description']
+
 class AnswerForm(forms.ModelForm):
     description = forms.CharField(
         max_length=2000,

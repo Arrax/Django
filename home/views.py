@@ -6,3 +6,4 @@ def home(request):
     主页
     """
     return redirect('questions:question_list')
+

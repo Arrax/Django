@@ -27,6 +27,8 @@ class CreateQuestionView(CreateView):
         form.save_m2m()
         messages.success(self.request, 'The question was created with success!')
         return redirect('questions:question_detail', question.pk)
+
+
 class QuestionListView(ListView):
     """
     Show the list of questions.
@@ -37,6 +39,9 @@ class QuestionListView(ListView):
     template_name = 'questions/questions_list.html'
     queryset = Question.objects.all()
     paginate_by = 1
+
+
+
 class QuestionDetailView(CreateView):
     """
     Show question deatil.
@@ -54,13 +59,15 @@ class QuestionDetailView(CreateView):
 
         context = super().get_context_data(**kwargs)
         return context
+
+
 @login_required
 def create_answer(request, pk):
     if request.method == 'POST':
         form = AnswerForm(request.POST)
         if form.is_valid():
             answer = Answer()
-            answer.user = request.user  # 设定回答提出人
+            answer.user = request.user  # 设定问题提出人
             answer.question = Question.objects.get(pk=pk)
             answer.description = form.cleaned_data.get('description')
             answer.save()
@@ -70,5 +77,4 @@ def create_answer(request, pk):
         form = AnswerForm()
 
     return redirect('questions:question_detail', pk)
-
 
