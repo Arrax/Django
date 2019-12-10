@@ -23,3 +23,9 @@ class UserSignupView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('home')
+
+
+
+
+
+
